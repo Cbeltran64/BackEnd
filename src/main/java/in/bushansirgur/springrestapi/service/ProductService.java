@@ -7,7 +7,7 @@ public interface ProductService {
 	
 	List<Product> getProducts(int pageNumber, int pageSize);
 	
-	Product saveProducts(Product product, long Idcategoria);
+	Product saveProducts(Product product);
 	
 	Product getSingleProducts (Long id);
 	

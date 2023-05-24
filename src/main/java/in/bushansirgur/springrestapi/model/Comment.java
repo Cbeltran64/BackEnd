@@ -10,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "tbl_comment")
@@ -23,13 +24,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @NotNull(message = "Name should not be null")
-    private String name;
-
-    @NotNull(message = "codeEAN should not be null")
-    private long codeEAN;
-
+    
     @NotEmpty(message = "comment should not be null")
     @Size(min = 1, max = 1000, message = "comment must be between 1 and 1000 characters")
     private String comment;
@@ -37,11 +32,9 @@ public class Comment {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
-
-    @NotNull(message = "Image Url should not be blank")
-    private String imageUrl;
-
-    @ManyToOne
+    
+    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -51,22 +44,6 @@ public class Comment {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public long getCodeEAN() {
-		return codeEAN;
-	}
-
-	public void setCodeEAN(long codeEAN) {
-		this.codeEAN = codeEAN;
 	}
 
 	public String getComment() {
@@ -85,14 +62,6 @@ public class Comment {
 		this.createdAt = createdAt;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
 	public Product getProduct() {
 		return product;
 	}
@@ -103,10 +72,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", name=" + name + ", codeEAN=" + codeEAN + ", comment=" + comment + ", createdAt="
-				+ createdAt + ", imageUrl=" + imageUrl + ", product=" + product + "]";
+		return "Comment [id=" + id + ", comment=" + comment + ", createdAt=" + createdAt + ", product=" + product + "]";
 	}
-
-   
-
+    
+    
 }

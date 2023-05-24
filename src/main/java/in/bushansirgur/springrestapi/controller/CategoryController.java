@@ -22,6 +22,7 @@ public class CategoryController {
 	
 	//localhost:8080/api/v1//
 	
+
 	@Autowired
 	private CategoryService caService;
 	

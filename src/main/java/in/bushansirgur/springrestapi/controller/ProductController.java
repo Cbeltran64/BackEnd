@@ -42,14 +42,14 @@ public class ProductController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PostMapping("/products/{categoryId}")
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product, @PathVariable Long categoryId) {
-        Product createdProduct = pService.saveProducts(product, categoryId);
+	@PostMapping("/products/save")
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+        Product createdProduct = pService.saveProducts(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@PutMapping ("/products/{id}")
+	@PutMapping ("/products/update/{id}")
 	public ResponseEntity<Product> updateProduct (@PathVariable Long id, @RequestBody Product product) {
 		 product.setId(id);
 	     return new ResponseEntity<Product>(pService.updateProducts(product),HttpStatus.OK);
@@ -73,10 +73,9 @@ public class ProductController {
 	     return new ResponseEntity<List<Product>> (pService.getProductsByNameAndBrand (name, brand), HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = "http://localhost:3001")
 	@GetMapping ("/products/filterByKeyword")
 	public ResponseEntity<List<Product>> getProductsByKeyword(@RequestParam String keyword){
-		System.out.println(keyword);
 	     return new ResponseEntity<List<Product>> (pService.getProductsByKeyword(keyword),HttpStatus.OK);
 	}
 	
@@ -94,36 +93,3 @@ public class ProductController {
 	
 	
 }
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -25,7 +25,7 @@ public class CategoryServiceImpl  implements CategoryService {
 
 	@Override
 	public List<Category> getProducts(int pageNumber, int pageSize) {
-		Pageable pages = PageRequest.of(pageNumber, pageSize, Direction.DESC, "id");
+		Pageable pages = PageRequest.of(pageNumber, pageSize, Direction.ASC, "id");
 		return cRepository.findAll(pages).getContent();
 	}
 	

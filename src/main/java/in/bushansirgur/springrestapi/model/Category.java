@@ -1,10 +1,14 @@
 package in.bushansirgur.springrestapi.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,7 +23,8 @@ public class Category {
 	@NotEmpty(message = "Name should not be null")
 	private String nombre;
 	   
-	
+	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
 
 	public Long getId() {
 		return id;

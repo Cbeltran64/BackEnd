@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import in.bushansirgur.springrestapi.model.Comment;
 import in.bushansirgur.springrestapi.service.CommentService;
 
-
+@CrossOrigin(origins = "http://localhost")
 @RestController
 public class CommentController {
 	
@@ -25,13 +25,12 @@ public class CommentController {
 	@Autowired
 	private CommentService cService;
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@GetMapping ("/comments")
 	 public ResponseEntity<List<Comment>> getCommet(@RequestParam Integer pageNumber, @RequestParam Integer pageSize){
 	     return new ResponseEntity<List<Comment>>(cService.getComment(pageNumber, pageSize),HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/comments")
 	public ResponseEntity<Comment> saveCommet(@Valid @RequestBody Comment comment) {
 		return new ResponseEntity<Comment>(cService.saveComment(comment),HttpStatus.CREATED);

@@ -77,10 +77,12 @@ public class ProductController {
 	     return new ResponseEntity<List<Product>> (pService.getProductsByNameORBrand(name, brand),HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/products/delete/{name}")
-	public ResponseEntity<String> deleteByProductName(@PathVariable String name){
-	     return new ResponseEntity<String> (pService.deleteByProductName(name) + " No. of records deleted", HttpStatus.OK);
+	@DeleteMapping("/products/delete/{id}")
+	public ResponseEntity<String> deleteByProductId(@PathVariable Long id) {
+	    pService.deleteByProductId(id);
+	    return ResponseEntity.ok().body("Product with ID " + id + " deleted successfully");
 	}
+
 	
 	
 }

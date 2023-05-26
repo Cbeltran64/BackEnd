@@ -28,8 +28,8 @@ public interface ProductRepository extends PagingAndSortingRepository< Product ,
 	
 	@Transactional
 	@Modifying
-	@Query( "DELETE FROM Product WHERE name = :name")
-	Integer deleteProductByName (String name);
+	@Query("DELETE FROM Product WHERE id = :id")
+	Integer deleteProductById(@Param("id") Long id);
 	
 		
 }

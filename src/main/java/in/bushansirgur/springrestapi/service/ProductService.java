@@ -23,6 +23,6 @@ public interface ProductService {
 	
 	List<Product> getProductsByNameORBrand(String name, long brand);
 	
-	Integer deleteByProductName (String name);
+	Integer deleteByProductId(Long id);
 	
 }	

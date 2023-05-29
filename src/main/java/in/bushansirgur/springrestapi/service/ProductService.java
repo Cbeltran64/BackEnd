@@ -2,6 +2,7 @@ package in.bushansirgur.springrestapi.service;
 
 import in.bushansirgur.springrestapi.model.Product;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 	
@@ -13,7 +14,7 @@ public interface ProductService {
 	
 	void deleteProducts (Long id);
 	
-	Product updateProducts (Product product);
+	Product updateProducts (Long id,Product product);
 	
 	List<Product> getProductsByName (String name);
 
@@ -24,5 +25,7 @@ public interface ProductService {
 	List<Product> getProductsByNameORBrand(String name, long brand);
 	
 	Integer deleteByProductId(Long id);
+	
+	Optional<Product> getProductById(Long id);
 	
 }	

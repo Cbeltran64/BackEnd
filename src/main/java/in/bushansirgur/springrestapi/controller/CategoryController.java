@@ -15,7 +15,7 @@ import in.bushansirgur.springrestapi.model.Category;
 import in.bushansirgur.springrestapi.service.CategoryService;
 
 
-@CrossOrigin(origins = "http://localhost")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CategoryController {
 	

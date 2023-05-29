@@ -39,11 +39,7 @@ public class ProductServiceImpl implements ProductService {
 		pRepository.deleteById(id);
 	}
 
-	@Override
-	public Product updateProducts(Product product) {
-		return pRepository.save(product);
-	}
-
+	
 	@Override
 	public List<Product> getProductsByName(String name) {
 		return pRepository.findByName(name);
@@ -75,6 +71,33 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product saveProducts(Product product) {
         return pRepository.save(product);
+	}
+	
+	@Override
+    public Optional<Product> getProductById(Long id) {
+        return pRepository.findById(id);
+    }
+
+
+
+	@Override
+	public Product updateProducts(Long id, Product product) {
+		Optional<Product> existingProduct = pRepository.findById(id);
+        if (existingProduct.isPresent()) {
+            Product updatedProduct = existingProduct.get();
+            updatedProduct.setCodeEAN(product.getCodeEAN());
+            updatedProduct.setName(product.getName());
+            updatedProduct.setPrice(product.getPrice());
+            updatedProduct.setDescription(product.getDescription());
+            updatedProduct.setBrand(product.getBrand());
+            updatedProduct.setUnitsAvailable(product.getUnitsAvailable());
+            updatedProduct.setImageUrl(product.getImageUrl());
+            updatedProduct.setCategories(product.getCategories());
+
+            return pRepository.save(updatedProduct);
+        } else {
+            throw new IllegalArgumentException("Product not found with ID: " + id);
+        }
 	}
 }
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import in.bushansirgur.springrestapi.model.Comment;
 import in.bushansirgur.springrestapi.service.CommentService;
 
-@CrossOrigin(origins = "http://localhost")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CommentController {
 	

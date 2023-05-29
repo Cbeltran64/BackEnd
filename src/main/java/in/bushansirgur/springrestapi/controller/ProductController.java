@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import in.bushansirgur.springrestapi.model.Product;
 import in.bushansirgur.springrestapi.service.ProductService;
 
-@CrossOrigin(origins = "http://localhost")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProductController {
 	
@@ -46,10 +46,10 @@ public class ProductController {
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 	
-	@PutMapping ("/products/update/{id}")
-	public ResponseEntity<Product> updateProduct (@PathVariable Long id, @RequestBody Product product) {
-		 product.setId(id);
-	     return new ResponseEntity<Product>(pService.updateProducts(product),HttpStatus.OK);
+	@PutMapping("/products/update/{id}")
+	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+	    Product updatedProduct = pService.updateProducts(id, product);
+	    return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/products")

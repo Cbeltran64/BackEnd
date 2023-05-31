@@ -5,6 +5,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -83,6 +87,14 @@ public class ProductController {
 	    return ResponseEntity.ok().body("Product with ID " + id + " deleted successfully");
 	}
 
-	
+	@GetMapping("/products/category/{categoryId}")
+	public ResponseEntity<Page<Product>> getProductsByCategoryId(@PathVariable Long categoryId){
+	        int page =0;
+	        int size=5;
+	    Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+	    Page<Product> products = pService.findByCategoriesIdOrderByCreatedAtDesc(categoryId, pageable);
+	    return ResponseEntity.ok(products);
+	}
+
 	
 }

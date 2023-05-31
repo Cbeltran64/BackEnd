@@ -4,6 +4,9 @@ import in.bushansirgur.springrestapi.model.Product;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface ProductService {
 	
 	List<Product> getProducts(int pageNumber, int pageSize);
@@ -28,4 +31,5 @@ public interface ProductService {
 	
 	Optional<Product> getProductById(Long id);
 	
+	Page<Product> findByCategoriesIdOrderByCreatedAtDesc(Long categoryId, Pageable pageable);
 }	

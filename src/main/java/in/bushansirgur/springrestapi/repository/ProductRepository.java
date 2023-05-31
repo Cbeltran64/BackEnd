@@ -2,6 +2,8 @@ package in.bushansirgur.springrestapi.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,7 +33,7 @@ public interface ProductRepository extends PagingAndSortingRepository< Product ,
 	@Query("DELETE FROM Product WHERE id = :id")
 	Integer deleteProductById(@Param("id") Long id);
 	
-		
+	Page<Product> findByCategoriesIdOrderByCreatedAtDesc(@Param("categoryId") Long categoryId, Pageable pageable);	
 }
 
 
